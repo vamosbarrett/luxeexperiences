@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1234567890",
+    "caption": "Cinematic wedding highlights — a night to remember.",
+    "media_url": "https://example.com/video1.mp4",
+    "permalink": "https://www.instagram.com/reel/CODE1/",
+    "timestamp": "2026-05-01T12:00:00+0000",
+    "author": "luxe_experiences_"
+  },
+  {
+    "id": "0987654321",
+    "caption": "Behind the scenes: floral design and styling.",
+    "media_url": "https://example.com/video2.mp4",
+    "permalink": "https://www.instagram.com/reel/CODE2/",
+    "timestamp": "2026-04-15T18:30:00+0000",
+    "author": "ella_seade"
+  }
+]
