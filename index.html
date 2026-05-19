@@ -557,13 +557,15 @@
 
         /* Brand logo sizing */
         .brand-logo {
-            height: 44px;
+            height: 70px;
             width: auto;
             display: block;
+            object-fit: contain;
+            filter: brightness(1.1);
         }
 
         @media (min-width: 1024px) {
-            .brand-logo { height: 56px; }
+            .brand-logo { height: 90px; }
         }
 
         .nav-link {
@@ -754,6 +756,14 @@
             </div>
         </div>
     </header>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var logo = document.querySelector('.brand-logo');
+            if (logo) {
+                logo.src = 'BRAND%20LOGO.jpg';
+            }
+        });
+    </script>
 
     <!-- ============ HERO SECTION ============ -->
     <section id="home" class="hero-section w-full min-h-screen flex items-center justify-center px-4 md:px-8 lg:px-12 relative overflow-hidden">
@@ -873,15 +883,15 @@
                     </p>
                     <div class="flex gap-4 pt-4 border-t border-luxury-gold/20">
                         <div class="flex-1">
-                            <p class="text-3xl font-bold text-luxury-gold">500+</p>
+                            <p class="text-3xl font-bold text-luxury-gold" data-count-to="500" data-count-suffix="+">0+</p>
                             <p class="text-gray-300 text-sm">Events Crafted</p>
                         </div>
                         <div class="flex-1">
-                            <p class="text-3xl font-bold text-luxury-gold">98%</p>
+                            <p class="text-3xl font-bold text-luxury-gold" data-count-to="98" data-count-suffix="%">0%</p>
                             <p class="text-gray-300 text-sm">Client Satisfaction</p>
                         </div>
                         <div class="flex-1">
-                            <p class="text-3xl font-bold text-luxury-gold">15+</p>
+                            <p class="text-3xl font-bold text-luxury-gold" data-count-to="15" data-count-suffix="+">0+</p>
                             <p class="text-gray-300 text-sm">Industry Awards</p>
                         </div>
                     </div>
@@ -1305,29 +1315,32 @@
             '696167307_18089197298361739_6877047685171895172_n.jpg'
         ];
 
+        // Video files (kept local but may not be published). If you host videos externally,
+        // set `mediaBaseURL` below to the hosting root (no trailing slash) and the script
+        // will use that as the source for videos/images instead of relative paths.
+        const mediaBaseURL = '';
+
         const galleryVideos = [
             'AQM2HNuKPRB27DP6eTnj-qowpUlhnOEFRHIY816uQdIAv7ApSZapsrVFFTLPgDyOZoQ9yqh4dx6wcj5gN_NAE9Pcsny6TePe.mp4',
-            'AQM9wsgpVTlfKH5dLOxSekP8IA1w5YlY5LT23T9Zh8PF49vAdvW0Rs6-p3jzt1Ja7iDjhHeXnRbmg8ldFpp_zyKUJwdDaX5H.mp4',
-            'AQMAceEqDtoCOprBluSJA_OaR2yd5OMAjjMrkEQUoTqVh8KUmc3r-0krOBcoRiEXQEQgXLcGF09v9ZN0G6i9SKfxm1L0jOLM.mp4',
-            'AQMm6rZpzPZx1mfHx8habZtdSjy3eJXMpGCXY9DAFLagCtQAnQ2cqo9SxIgqLuie7HOTyRl8jcKYUylKnXvxz5eSVSrUzRGu.mp4',
-            'AQMNNn4XnAUIx1acju5y3M6nnRprjdxB1gjQoR80a276YXc4iBqKxB6gedHAWvH96XmqwgpLQX0h9aEinhqXEvdO0BtCyWSR.mp4',
-            'AQMwaXZ1oUnEjNNzChvjgNwmIlvI1Ba7iwFNXnI5hatgGXzOuBMgbH31PPqIG0gH5JU5t7psOksuZyaz2M0ZcnIA..mp4',
-            'AQMy60NXDMNYBD-bjH9SAxKiN6UsuHXXmYHJAouWaIGP3U943FxujWaMlLRYmMKw_lSLZ_GlTmZEDIvkQeWOcsoe..mp4',
-            'AQN3snhlBlEO_J1m8FQhutq7d03MBSWJhqMXx0VAE1bcJyACZFLZnanz2Bom4kzX_Rjw3ULbv-WAwrkDYQDslBUtNJJCZHK0.mp4',
-            'AQNc_2RphFjXnUgh4a9ryngNrDfgCaLp8hMK3ZEDxknB-xDYgKbzot5WeFVO_iNhdYvUcpOyxmkItRAzVKWxLrz9..mp4',
-            'AQNEGGdZpr9gFVbyHVTAE80rdWXSyh-xYVKdMfrolJ9KWftTda1M6Nf7K3QhbwQnxPFOL6_h458Ga-J5Vr2Q398D..mp4',
-            'AQNk-mHx2CfTnvNwZJGiERwle25Ai5xWVdobZcG8lG-5iBBuPy-bADbvEC44g8_6XXhJhoEu237eIl-pCdiIIfjVRFDKu_JI.mp4',
-            'AQOJ1tCqRUuVhbMjza8iV7KDJqbvu6aQtbgU3v-uyzTCiOliS6ynusguwsMq_F0Q3LZ7zr8k_hDGzzZpfFOi2v0b087JcSb3.mp4',
-            'AQOkHLzw7A1I011VEMKATmMI4Bpirp2kQCauJyLpzyRPlt-5bRtYXE_5BqhmPmQp5AsM_ol428DD7P8oebSySA4PBZ_eHIlS.mp4',
-            'AQOriIp279yMKqSj_tQwKhKtNXO_MGdjrMdvVIpomaKTZQ6GrBKPNy3JKcFiIzhv27zS50BU-fqT17ldPfeK715b0Hekgl29.mp4',
             'AQP-mZNuyRiv4JN_6Tajea1j_8Dq0Bca_h7UTfByXBcvaXbr2sN9wZ8aGGKecAtxTaZ1E7i8bZmxr21OEkMF55ie..mp4',
-            'AQPgKrjdl5IfdgY5MPZdE8CGNfSGx2DNN4orm5AZ_jx_E9-dD3T0i5oznYKuPuEC8pWKa-Q34HOYuz3uXUGNBx-c..mp4',
-            'AQPJVPbh7cDOaGpnFR9FfDvyf2HmZcduVoVUaIW0BQNpyJqnh0ikII1N6-5YPLHDFj3bk7KpfrXtyXmZBnI50XoEt3RuJC6-.mp4',
-            'AQPlraaC3Esy9jAu4woaJsA0l8MA56R1NryXusMZJfX1WBNauGGY362j2nh6YceTriazI6covINTGMRLpgUlzw-9T0xJaKdL.mp4',
-            'AQPOVI1hAhcGacGOWLVuNvkbHvf5O-D132oxMVa03vIT979BpH2sHkeclM67XvQWtXKIuRLyIJhT2HHyT38cLqrYuZUL_Pcj.mp4',
-            'AQPsEJcUEKiZ2pwcccVB4Yd63PB1Xl3LTZtTPXWUg9GK8DU-IYBDxKF3rD32WhUtVam5DWhMWzP0BLVLApHAsj7l7FybQI6l.mp4',
+            'AQOriIp279yMKqSj_tQwKhKtNXO_MGdjrMdvVIpomaKTZQ6GrBKPNy3JKcFiIzhv27zS50BU-fqT17ldPfeK715b0Hekgl29.mp4',
+            'AQOkHLzw7A1I011VEMKATmMI4Bpirp2kQCauJyLpzyRPlt-5bRtYXE_5BqhmPmQp5AsM_ol428DD7P8oebSySA4PBZ_eHIlS.mp4',
+            'AQOJ1tCqRUuVhbMjza8iV7KDJqbvu6aQtbgU3v-uyzTCiOliS6ynusguwsMq_F0Q3LZ7zr8k_hDGzzZpfFOi2v0b087JcSb3.mp4',
+            'AQNk-mHx2CfTnvNwZJGiERwle25Ai5xWVdobZcG8lG-5iBBuPy-bADbvEC44g8_6XXhJhoEu237eIl-pCdiIIfjVRFDKu_JI.mp4',
+            'AQNEGGdZpr9gFVbyHVTAE80rdWXSyh-xYVKdMfrolJ9KWftTda1M6Nf7K3QhbwQnxPFOL6_h458Ga-J5Vr2Q398D..mp4',
+            'AQNc_2RphFjXnUgh4a9ryngNrDfgCaLp8hMK3ZEDxknB-xDYgKbzot5WeFVO_iNhdYvUcpOyxmkItRAzVKWxLrz9..mp4',
+            'AQN3snhlBlEO_J1m8FQhutq7d03MBSWJhqMXx0VAE1bcJyACZFLZnanz2Bom4kzX_Rjw3ULbv-WAwrkDYQDslBUtNJJCZHK0.mp4',
+            'AQMy60NXDMNYBD-bjH9SAxKiN6UsuHXXmYHJAouWaIGP3U943FxujWaMlLRYmMKw_lSLZ_GlTmZEDIvkQeWOcsoe..mp4',
+            'AQMwaXZ1oUnEjNNzChvjgNwmIlvI1Ba7iwFNXnI5hatgGXzOuBMgbH31PPqIG0gH5JU5t7psOksuZyaz2M0ZcnIA..mp4',
+            'AQMNNn4XnAUIx1acju5y3M6nnRprjdxB1gjQoR80a276YXc4iBqKxB6gedHAWvH96XmqwgpLQX0h9aEinhqXEvdO0BtCyWSR.mp4',
+            'AQMm6rZpzPZx1mfHx8habZtdSjy3eJXMpGCXY9DAFLagCtQAnQ2cqo9SxIgqLuie7HOTyRl8jcKYUylKnXvxz5eSVSrUzRGu.mp4',
+            'AQMAceEqDtoCOprBluSJA_OaR2yd5OMAjjMrkEQUoTqVh8KUmc3r-0krOBcoRiEXQEQgXLcGF09v9ZN0G6i9SKfxm1L0jOLM.mp4',
+            'AQM9wsgpVTlfKH5dLOxSekP8IA1w5YlY5LT23T9Zh8PF49vAdvW0Rs6-p3jzt1Ja7iDjhHeXnRbmg8ldFpp_zyKUJwdDaX5H.mp4',
+            'AQPzqMSdIKJRy1S2DP5K1_OHowyZgAmNg1UtI2oH6ZxO8V1ptA_e0HV7AVPtw9DFoFTBbaoPxTNJaRC0nlyoLwCFEWsqIzSx.mp4',
             'AQPv0mEoIbwkGEdhAG0GNsvhoDQxmQTvN8kionqGu3mPEhBcvtvPBBYc5bIisBrTfPJji6EHFLo0l4JbeFa99qG6Ncx6GvEp.mp4',
-            'AQPzqMSdIKJRy1S2DP5K1_OHowyZgAmNg1UtI2oH6ZxO8V1ptA_e0HV7AVPtw9DFoFTBbaoPxTNJaRC0nlyoLwCFEWsqIzSx.mp4'
+            'AQPsEJcUEKiZ2pwcccVB4Yd63PB1Xl3LTZtTPXWUg9GK8DU-IYBDxKF3rD32WhUtVam5DWhMWzP0BLVLApHAsj7l7FybQI6l.mp4',
+            'AQPOVI1hAhcGacGOWLVuNvkbHvf5O-D132oxMVa03vIT979BpH2sHkeclM67XvQWtXKIuRLyIJhT2HHyT38cLqrYuZUL_Pcj.mp4',
+            'AQPlraaC3Esy9jAu4woaJsA0l8MA56R1NryXusMZJfX1WBNauGGY362j2nh6YceTriazI6covINTGMRLpgUlzw-9T0xJaKdL.mp4'
         ];
 
         // Combine and shuffle all media
@@ -1339,7 +1352,7 @@
                 allMedia.push({ type: 'image', src: img, id: 'img-' + idx });
             });
 
-            // Add all videos
+            // Add videos (if any)
             galleryVideos.forEach((vid, idx) => {
                 allMedia.push({ type: 'video', src: vid, id: 'vid-' + idx });
             });
@@ -1363,9 +1376,10 @@
                             </div>
                         `;
                     } else {
+                        // source uses raw filename; we'll resolve to mediaBaseURL after insertion
                         galleryHTML += `
                             <div class="gallery-item-card group">
-                                <video muted playsinline autoplay loop>
+                                <video muted playsinline autoplay loop preload="metadata">
                                     <source src="${media.src}" type="video/mp4">
                                 </video>
                                 <div class="gallery-video-badge">VIDEO</div>
@@ -1380,6 +1394,60 @@
 
             // Insert into DOM
             document.getElementById('galleryScrollInner').innerHTML = galleryHTML;
+
+            // Resolve video sources to mediaBaseURL (if set) and attach robust fallbacks
+            const videos = document.querySelectorAll('.gallery-item-card video');
+            videos.forEach((video) => {
+                const srcElem = video.querySelector('source');
+                if (!srcElem) return;
+                const rawSrc = srcElem.getAttribute('src');
+                const resolvedSrc = mediaBaseURL ? (mediaBaseURL + '/' + rawSrc) : rawSrc;
+                srcElem.setAttribute('src', resolvedSrc);
+                // try loading the video
+                try { video.load(); } catch (e) {}
+
+                // Fallback helper: replace video with image poster or first gallery image
+                const fallback = () => {
+                    // try same-name jpg/png poster, else first gallery image
+                    const posterCandidates = [rawSrc.replace(/\.mp4$/i, '.jpg'), rawSrc.replace(/\.mp4$/i, '.png')];
+                    let imgSrc = '';
+                    for (const cand of posterCandidates) {
+                        imgSrc = mediaBaseURL ? (mediaBaseURL + '/' + cand) : cand;
+                        // create <img> and let browser handle 404s; we prefer to show something quickly
+                        // (can't synchronously check availability without fetch)
+                        break;
+                    }
+                    if (!imgSrc) imgSrc = (galleryImages.length ? ((mediaBaseURL ? (mediaBaseURL + '/') : '') + galleryImages[0]) : '');
+
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = 'Event photo';
+                    img.loading = 'lazy';
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+
+                    const parent = video.parentNode;
+                    if (parent) {
+                        parent.insertBefore(img, video);
+                        // remove video and badge
+                        const badge = parent.querySelector('.gallery-video-badge');
+                        if (badge) badge.remove();
+                        video.remove();
+                    }
+                };
+
+                // Attach event listeners for failure modes
+                video.addEventListener('error', fallback);
+                video.addEventListener('stalled', fallback);
+                video.addEventListener('abort', fallback);
+
+                // If video doesn't emit canplay within timeout, fallback
+                let canPlay = false;
+                const onCanPlay = () => { canPlay = true; video.removeEventListener('canplay', onCanPlay); };
+                video.addEventListener('canplay', onCanPlay);
+                setTimeout(() => { if (!canPlay) fallback(); }, 7000);
+            });
 
             // Add click interactions
             const galleryItems = document.querySelectorAll('.gallery-item-card');
@@ -1417,6 +1485,65 @@
             mobileNavPanel.querySelectorAll('a').forEach((link) => {
                 link.addEventListener('click', () => setMobileNavState(false));
             });
+        }
+
+        // Scroll-triggered stat counters
+        const statCounters = document.querySelectorAll('[data-count-to]');
+
+        function animateStatCounter(element) {
+            if (element.dataset.countAnimated === 'true') {
+                return;
+            }
+
+            element.dataset.countAnimated = 'true';
+
+            const targetValue = Number(element.dataset.countTo || '0');
+            const suffix = element.dataset.countSuffix || '';
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (prefersReducedMotion) {
+                element.textContent = `${targetValue}${suffix}`;
+                return;
+            }
+
+            const animationDuration = 1600;
+            const startTime = performance.now();
+
+            function tick(currentTime) {
+                const progress = Math.min((currentTime - startTime) / animationDuration, 1);
+                const easedProgress = 1 - Math.pow(1 - progress, 3);
+                const currentValue = Math.round(targetValue * easedProgress);
+
+                element.textContent = `${currentValue}${suffix}`;
+
+                if (progress < 1) {
+                    requestAnimationFrame(tick);
+                }
+            }
+
+            requestAnimationFrame(tick);
+        }
+
+        if (statCounters.length > 0) {
+            if (!('IntersectionObserver' in window)) {
+                statCounters.forEach(animateStatCounter);
+            } else {
+                const statObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+                        animateStatCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    });
+                }, {
+                    threshold: 0.6,
+                    rootMargin: '0px 0px -10% 0px'
+                });
+
+                statCounters.forEach((counter) => statObserver.observe(counter));
+            }
         }
 
         // AOS initialization
