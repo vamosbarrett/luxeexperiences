@@ -1356,10 +1356,41 @@
             });
 
             // Add all videos (use mapping if available)
+
+        function resolveMappedSrc(src, maps) {
+            if (!src || src.startsWith('data:') || src.startsWith('#') || src.startsWith('blob:')) {
+                return src;
+            }
+
+            if (/^https?:\/\//.test(src) || src.startsWith('//')) {
+                return src;
+            }
+
+            const fileName = src.split('/').pop().split('?')[0];
+            return maps[fileName] || src;
+        }
+
+        function applyMappingsToStaticMedia(maps) {
+            document.querySelectorAll('img[src], video[src], video source[src]').forEach((node) => {
+                const currentSrc = node.getAttribute('src');
+                const mappedSrc = resolveMappedSrc(currentSrc, maps);
+
+                if (mappedSrc !== currentSrc) {
+                    node.setAttribute('src', mappedSrc);
+                }
+            });
+
+            document.querySelectorAll('video').forEach((video) => {
+                if (video.querySelector('source[src]')) {
+                    video.load();
+                }
+            });
+        }
             galleryVideos.forEach((vid, idx) => {
                 const src = maps[vid] || vid;
                 allMedia.push({ type: 'video', src: src, id: 'vid-' + idx });
             });
+            applyMappingsToStaticMedia(maps);
 
             // Shuffle array
             allMedia.sort(() => Math.random() - 0.5);
